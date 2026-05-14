@@ -26,7 +26,7 @@ ollama pull gemma4:e2b
 ### 2. Clone and install dependencies
 
 ```bash
-git clone https://github.com/yourusername/neo-tutor.git
+git clone https://github.com/M-Haseeb01/Neo.git
 cd neo-tutor
 pip install -r requirements.txt
 ```
