@@ -1,8 +1,18 @@
-PyQt6>=6.4.0
-ollama>=0.1.6
-sounddevice>=0.4.6
-vosk>=0.3.45
-numpy>=1.24.0
-mss>=9.0.1
-Pillow>=10.0.0
-kittentts>=0.1.0
+# UI Framework
+PyQt6==6.11.0
+
+# AI & LLM
+ollama==0.6.2
+
+# Audio (Speech-to-Text & Text-to-Speech)
+vosk==0.3.45
+kittentts==0.1.0
+sounddevice==0.5.5
+onnxruntime==1.25.1
+
+# Screen Capture & Vision
+mss==10.2.0
+pillow==12.2.0
+
+# Data Processing
+numpy==2.4.4
