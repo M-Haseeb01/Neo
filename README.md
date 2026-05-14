@@ -38,14 +38,6 @@ GitHub's 100MB limit means audio models ship separately.
 Download: [vosk-model-small-en-us-0.15](https://alphacephei.com/vosk/models/vosk-model-small-en-us-0.15.zip)
 Extract and place the folder in the project root.
 
-**KittenTTS (Text-to-Speech)**
-The model downloads automatically on first run (~57 MB) and is cached locally in `kittentts_models/`. No manual download needed — just run the app with an internet connection once.
-
-To run fully offline after that, add this to the top of `backend.py` before any imports:
-```python
-import os
-os.environ["HF_HUB_OFFLINE"] = "1"
-```
 
 ### 4. Run
 
