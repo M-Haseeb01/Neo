@@ -6,11 +6,13 @@ import ollama
 import sounddevice as sd
 from kittentts import KittenTTS
 import config
-
+import os
+os.environ["HF_HUB_DISABLE_SYMLINKS_WARNING"] = "1"
 class TTSPipeline:
     def __init__(self, state_callback=None):
         print("[TTS] Loading model…")
-        self.tts = KittenTTS(config.TTS_MODEL)
+        # backend.py  — one line change
+        self.tts = KittenTTS(config.TTS_MODEL, cache_dir=config.TTS_CACHE)
         self.text_queue = queue.Queue()
         self.audio_queue = queue.Queue()
         self.state_callback = state_callback
@@ -102,9 +104,13 @@ class ChatController:
                 self.tts.speak(buf)
                 self.history.append({"role": "assistant", "content": full_res})
                 
-                # Fallback extraction if stream is disabled
-                wb = re.search(r'<WHITEBOARD>(.*?)</WHITEBOARD>', full_res, re.DOTALL | re.IGNORECASE)
-                if wb: self.tool_callback("whiteboard", wb.group(1))
+                wb = re.search(
+                    r'<\s*whiteboard\s*>(.*?)<\s*/\s*whiteboard\s*>',
+                    full_res,
+                    re.DOTALL | re.IGNORECASE
+                )
+                if wb and self.tool_callback:
+                    self.tool_callback("whiteboard", wb.group(1).strip())
 
         except Exception as e:
             print(f"[Ollama Error] {e}")

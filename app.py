@@ -183,10 +183,25 @@ class NeoApp(QWidget):
         QApplication.quit()
 
     def explain_screen(self):
-        if self.is_processing:
-            return
-        self.chat_input.setText("Please explain what you see on my screen.")
-        self.handle_action()
+            """Modified: Combines current input text with the screen capture trigger."""
+            if self.is_processing:
+                return
+            
+            current_text = self.chat_input.text().strip()
+            
+            # 1. If the box is empty, use a default prompt.
+            if not current_text:
+                self.chat_input.setText("Explain what you see on my screen.")
+            else:
+                # 2. If the user typed something but didn't include a trigger word, 
+                # we append it so handle_action() knows to take a screenshot.
+                trigger_keywords = ["see", "screen", "look", "where", "explain"]
+                if not any(kw in current_text.lower() for kw in trigger_keywords):
+                    # Append contextually so the LLM understands it's a visual query
+                    self.chat_input.setText(f"{current_text} (looking at my screen)")
+
+            # 3. Trigger the standard action handler
+            self.handle_action()
 
     def handle_action(self):
         if self.is_processing:
@@ -204,6 +219,7 @@ class NeoApp(QWidget):
         self.chat_input.clear()
 
         img_b64 = None
+        # This check now works for both the dedicated button and manual typing
         if any(kw in text.lower() for kw in ["see", "screen", "look", "where", "explain"]):
             self.status_lbl.setText("● Capturing...")
             self.status_lbl.setStyleSheet("color: #F87171;")
