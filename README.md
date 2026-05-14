@@ -27,7 +27,7 @@ ollama pull gemma4:e2b
 
 ```bash
 git clone https://github.com/M-Haseeb01/Neo.git
-cd neo-tutor
+cd Neo
 pip install -r requirements.txt
 ```
 
