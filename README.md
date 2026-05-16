@@ -32,12 +32,37 @@ pip install -r requirements.txt
 ```
 
 ### 3. Download audio models
-GitHub's 100MB limit means audio models ship separately.
 
-**Vosk (Speech-to-Text)**
-Download: [vosk-model-small-en-us-0.15](https://alphacephei.com/vosk/models/vosk-model-small-en-us-0.15.zip)
-Extract and place the folder in the project root.
+GitHub's 100MB limit means some audio models ship separately.
 
+#### Vosk (Speech-to-Text)
+
+Download:
+https://alphacephei.com/vosk/models/vosk-model-small-en-us-0.15.zip
+
+Extract the folder and place it in the project root.
+
+---
+
+#### KittenTTS (Text-to-Speech)
+
+Install directly from the official GitHub release:
+
+```bash
+pip install https://github.com/KittenML/KittenTTS/releases/download/0.8.1/kittentts-0.8.1-py3-none-any.whl
+```
+
+Optional dependencies:
+
+```bash
+pip install soundfile numpy
+```
+
+For Windows users, install eSpeak NG and set:
+
+```python
+os.environ["PHONEMIZER_ESPEAK_LIBRARY"] = r"C:\Program Files\eSpeak NG\libespeak-ng.dll"
+```
 
 ### 4. Run
 
