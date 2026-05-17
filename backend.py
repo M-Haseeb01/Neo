@@ -11,7 +11,7 @@ os.environ["HF_HUB_DISABLE_SYMLINKS_WARNING"] = "1"
 class TTSPipeline:
     def __init__(self, state_callback=None):
         print("[TTS] Loading model…")
-        # backend.py  — one line change
+       
         self.tts = KittenTTS(config.TTS_MODEL, cache_dir=config.TTS_CACHE)
         self.text_queue = queue.Queue()
         self.audio_queue = queue.Queue()
