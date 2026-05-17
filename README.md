@@ -70,5 +70,5 @@ os.environ["PHONEMIZER_ESPEAK_LIBRARY"] = r"C:\Program Files\eSpeak NG\libespeak
 python app.py
 ```
 
-Licensed under CC-BY 4.0 · Muhammad Haseeb, 2026
+CC-BY 4.0 · Muhammad Haseeb
 
