@@ -72,3 +72,7 @@ python app.py
 
 
 
+
+```
+Licensed under CC-BY 4.0 · Muhammad Haseeb, 2026
+```
